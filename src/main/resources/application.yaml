@@ -1,3 +1,15 @@
 spring:
   application:
     name: briefly
+  config:
+    import: optional:file:./.env[.properties]
+
+gnews:
+  client:
+    base-url: https://gnews.io/api/v4
+    api-key: ${GNEWS_API_KEY}
+
+
+logging:
+  level:
+    io.github.lefpap.briefly.lib.gnews.GNewsClient: DEBUG
