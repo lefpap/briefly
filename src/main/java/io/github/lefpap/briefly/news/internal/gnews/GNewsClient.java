@@ -1,4 +1,4 @@
-package io.github.lefpap.briefly.lib.gnews;
+package io.github.lefpap.briefly.news.internal.gnews;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

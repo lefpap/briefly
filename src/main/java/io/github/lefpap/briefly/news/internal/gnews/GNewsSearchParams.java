@@ -1,4 +1,4 @@
-package io.github.lefpap.briefly.lib.gnews;
+package io.github.lefpap.briefly.news.internal.gnews;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
-@Builder
+@Builder(toBuilder = true)
 public record GNewsSearchParams(
     @NotBlank String q,
     String lang,

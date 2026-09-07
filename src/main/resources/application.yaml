@@ -4,6 +4,13 @@ spring:
   config:
     import: optional:file:./.env[.properties]
 
+  ai:
+    openai:
+      base-url: ${BRIEFLY_AI_BASE_URL:https://generativelanguage.googleapis.com/v1beta/openai}
+      api-key: ${BRIEFLY_AI_API_KEY}
+      chat:
+        model: ${BRIEFLY_AI_MODEL:gemini-3.7-flash}
+
 gnews:
   client:
     base-url: https://gnews.io/api/v4
