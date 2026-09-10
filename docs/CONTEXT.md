@@ -5,12 +5,12 @@ Briefly creates concise news briefs from published news articles.
 ## Language
 
 **Brief Request**:
-A request for an on-demand News Brief about a topic. It expresses what reporting the user wants understood, not how an external news provider should perform its search.
+A request for an on-demand News Brief, expressed through a Query and an optional Reporting Window.
 _Avoid_: Search request, GNews query
 
-**Topic**:
-The plain-text subject or question that a Brief Request asks Briefly to explain. It is not interpreted as external news-provider query syntax.
-_Avoid_: Query, prompt
+**Query**:
+Free-form text describing the news the user cares about, including subjects, questions, or more detailed interests. It does not require external news-provider query syntax.
+_Avoid_: Topic, prompt, GNews query
 
 **Publication Country**:
 The country in which an Article's Source is based. It does not identify the location of the reported event.
@@ -29,7 +29,7 @@ The language in which a News Brief is written. It is independent of the Source L
 _Avoid_: Language, response language
 
 **Brief Criteria**:
-The normalized Topic, Publication Country, Source Language, Output Language, and Reporting Window used to produce a News Brief.
+The normalized Query and resolved Reporting Window used to produce a News Brief.
 _Avoid_: Search parameters, provider options
 
 **News Brief**:
@@ -49,7 +49,7 @@ A synthesis of a news brief's highlights. It can contain multiple paragraphs but
 _Avoid_: Summary
 
 **Highlight**:
-An important development or meaningful disagreement in a news brief. A highlight identifies the Articles that support it.
+A focused narrative section about an important development or meaningful disagreement in a news brief. It provides enough context to stand on its own and identifies the Articles intended to support it.
 _Avoid_: Key point, bullet
 
 **Citation**:
