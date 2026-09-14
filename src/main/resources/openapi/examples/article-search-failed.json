@@ -1,0 +1,8 @@
+{
+  "type": "about:blank",
+  "title": "Bad Gateway",
+  "status": 502,
+  "detail": "Article search failed.",
+  "instance": "/api/briefs/generate",
+  "code": "ARTICLE_SEARCH_FAILED"
+}

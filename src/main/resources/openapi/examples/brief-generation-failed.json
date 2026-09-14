@@ -1,0 +1,8 @@
+{
+  "type": "about:blank",
+  "title": "Bad Gateway",
+  "status": 502,
+  "detail": "Brief generation failed.",
+  "instance": "/api/briefs/generate",
+  "code": "BRIEF_GENERATION_FAILED"
+}

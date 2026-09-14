@@ -1,0 +1,8 @@
+{
+  "type": "about:blank",
+  "title": "Internal Server Error",
+  "status": 500,
+  "detail": "An unexpected error occurred.",
+  "instance": "/api/briefs/generate",
+  "code": "INTERNAL_ERROR"
+}
