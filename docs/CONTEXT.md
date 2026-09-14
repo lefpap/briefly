@@ -13,7 +13,7 @@ Free-form text describing the news the user cares about, including subjects, que
 _Avoid_: Topic, prompt, GNews query
 
 **Publication Country**:
-The country in which an Article's Source is based. It does not identify the location of the reported event.
+The country in which an Article's Publisher is based. It does not identify the location of the reported event.
 _Avoid_: Country, event country
 
 **Reporting Window**:
@@ -25,7 +25,7 @@ The language in which an eligible Article is published.
 _Avoid_: Language, input language
 
 **Output Language**:
-The language in which a News Brief is written. It is independent of the Source Languages used as evidence.
+The language in which a News Brief is written. It is independent of the Source Languages of its Source Articles.
 _Avoid_: Language, response language
 
 **Brief Criteria**:
@@ -33,16 +33,19 @@ The normalized Query and resolved Reporting Window used to produce a News Brief.
 _Avoid_: Search parameters, provider options
 
 **News Brief**:
-A concise synthesis of at least two non-duplicate Articles from different Sources. Its citations identify the Articles intended to support each highlight, but Briefly does not prove semantic grounding or claim independent fact verification.
+A concise synthesis of at least two Source Articles. Its citations identify the Source Articles intended to support each highlight, but Briefly does not prove semantic grounding or claim independent fact verification.
 _Avoid_: Summary, report
 
 **Article**:
-A published news article used as evidence for a news brief.
-_Avoid_: Source Article
+A published news article eligible to inform a News Brief.
 
-**Source**:
+**Source Article**:
+An Article selected as a source of information for a News Brief and assigned a Citation ID.
+_Avoid_: Evidence
+
+**Publisher**:
 The organization or publication from which an Article originates.
-_Avoid_: Publisher, provider
+_Avoid_: Source, provider
 
 **Overview**:
 A synthesis of a news brief's highlights. It can contain multiple paragraphs but introduces no facts that are absent from the highlights.
@@ -53,5 +56,5 @@ A focused narrative section about an important development or meaningful disagre
 _Avoid_: Key point, bullet
 
 **Citation**:
-A relationship from a Highlight to an Article intended to support it. It is not proof of factual correctness or semantic grounding.
+A relationship from a Highlight to a Source Article intended to support it. It is not proof of factual correctness or semantic grounding.
 _Avoid_: Proof, verification

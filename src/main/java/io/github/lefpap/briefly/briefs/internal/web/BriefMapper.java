@@ -53,17 +53,17 @@ final class BriefMapper {
 
     private static BriefResponse.Article toResponseArticle(SourceArticle sourceArticle) {
         var article = sourceArticle.article();
-        var source = article.source();
+        var publisher = article.publisher();
         var metadata = article.metadata();
         return BriefResponse.Article.builder()
             .citationId(sourceArticle.citationId())
             .title(article.title())
             .description(article.description())
             .url(article.url())
-            .source(BriefResponse.Source.builder()
-                .name(source.name())
-                .url(source.url())
-                .country(source.country())
+            .publisher(BriefResponse.Publisher.builder()
+                .name(publisher.name())
+                .url(publisher.url())
+                .country(publisher.country())
                 .build())
             .metadata(BriefResponse.ArticleMetadata.builder()
                 .imageUrl(metadata.imageUrl())

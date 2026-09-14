@@ -2,7 +2,7 @@
 
 ## Overview
 
-Briefly creates concise News Briefs by synthesizing source articles from different publishers.
+Briefly creates concise News Briefs by synthesizing Source Articles.
 
 ## Working principles
 

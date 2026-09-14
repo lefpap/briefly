@@ -37,13 +37,13 @@ public record BriefResponse(
         String title,
         String description,
         URI url,
-        Source source,
+        Publisher publisher,
         ArticleMetadata metadata
     ) {
     }
 
     @Builder(toBuilder = true)
-    public record Source(
+    public record Publisher(
         String name,
         URI url,
         String country
