@@ -22,7 +22,10 @@ gnews:
     base-url: https://gnews.io/api/v4
     api-key: ${GNEWS_API_KEY}
 
-
 logging:
+  pattern:
+    # Prefix every log line of a News Brief request with its correlation ID.
+    correlation: "[%X{correlation_id:-}] "
+
   level:
-    io.github.lefpap.briefly.lib.gnews.GNewsClient: DEBUG
+    root: WARN

@@ -6,11 +6,21 @@ import io.github.lefpap.briefly.news.api.model.ArticleMetadata;
 import io.github.lefpap.briefly.news.api.model.ArticleSearchCriteria;
 import io.github.lefpap.briefly.news.api.model.Publisher;
 import io.github.lefpap.briefly.news.api.service.ArticleSearchService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
+/**
+ * Reports what was searched and how many Articles it yielded, so a quick search is told apart from
+ * one that found nothing and an empty result can be acted on.
+ *
+ * <p>The whole of the criteria is logged: the Reporting Window because a request that omits it has
+ * it resolved server-side, and the Query because it is the rest of what makes a search reproducible.
+ * Both are already echoed back to the caller in the response criteria.
+ */
+@Slf4j
 @Service
 public class GNewsArticleSearchService implements ArticleSearchService {
 
@@ -31,9 +41,16 @@ public class GNewsArticleSearchService implements ArticleSearchService {
         var params = buildGnewsSearchParams(criteria);
         try {
             GNewsResponse response = newsClient.search(params);
-            return response.articles().stream()
+            List<Article> articles = response.articles().stream()
                 .map(GNewsArticleSearchService::toArticle)
                 .toList();
+
+            log.info(
+                "Article search completed criteria={} articles={}",
+                criteria,
+                articles.size()
+            );
+            return articles;
         } catch (GNewsClientException | RestClientException ex) {
             throw new ArticleSearchException("Article search provider request failed", ex);
         }
