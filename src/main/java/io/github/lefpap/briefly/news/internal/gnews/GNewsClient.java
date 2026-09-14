@@ -9,6 +9,7 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientResponseException;
 
 import java.io.IOException;
 
@@ -30,14 +31,31 @@ public class GNewsClient {
     }
 
     public GNewsResponse search(@NotNull @Valid GNewsSearchParams params) {
-        return restClient.get()
-            .uri(uriBuilder -> uriBuilder
-                .path("/search")
-                .queryParams(params.toQueryParams())
-                .build()
-            )
-            .retrieve()
-            .body(GNewsResponse.class);
+        try {
+            GNewsResponse response = restClient.get()
+                .uri(uriBuilder -> uriBuilder
+                    .path("/search")
+                    .queryParams(params.toQueryParams())
+                    .build()
+                )
+                .retrieve()
+                .requiredBody(GNewsResponse.class);
+
+            if (response.articles() == null) {
+                throw new GNewsClientException("GNews response did not contain an Article collection");
+            }
+
+            return response;
+        } catch (RestClientResponseException ex) {
+            throw new GNewsClientException(
+                "GNews returned an error response [%s (%d)]".formatted(
+                    ex.getStatusCode(),
+                    ex.getStatusCode().value()),
+                ex
+            );
+        } catch (IllegalStateException ex) {
+            throw new GNewsClientException("GNews returned a response without the required body", ex);
+        }
     }
 
     private static ClientHttpResponse logExchange(

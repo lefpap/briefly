@@ -10,7 +10,7 @@ public record Article(
         String description,
         String content,
         URI url,
-        Source source,
+        Publisher publisher,
         ArticleMetadata metadata
 ) {
 }
