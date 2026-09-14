@@ -11,6 +11,12 @@ spring:
       chat:
         model: ${BRIEFLY_AI_MODEL:gemini-3.7-flash}
 
+springdoc:
+  # Publish only the two public News Brief endpoints.
+  paths-to-match: /api/briefs/generate, /api/briefs/generate/html
+  swagger-ui:
+    path: /swagger-ui.html
+
 gnews:
   client:
     base-url: https://gnews.io/api/v4

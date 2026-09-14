@@ -1,0 +1,54 @@
+{
+  "criteria": {
+    "query": "European Union artificial intelligence regulation",
+    "from": "2025-05-01T09:15:30Z",
+    "to": "2025-05-02T09:15:30Z"
+  },
+  "title": "EU moves to tighten AI oversight",
+  "overview": "Lawmakers advanced new supervisory duties for high-risk AI systems, while industry groups warned about compliance costs.",
+  "highlights": [
+    {
+      "text": "Parliament backed stricter supervision of high-risk AI systems, adding reporting duties for providers operating in the single market.",
+      "citationIds": [1, 2]
+    },
+    {
+      "text": "Industry associations disputed the timeline, arguing that smaller providers cannot meet the proposed conformity deadlines.",
+      "citationIds": [2]
+    }
+  ],
+  "sourceArticles": [
+    {
+      "citationId": 1,
+      "title": "Parliament backs stricter AI supervision",
+      "description": "Lawmakers approved additional duties for providers of high-risk AI systems.",
+      "url": "https://example.com/news/parliament-backs-ai-supervision",
+      "publisher": {
+        "name": "Example Times",
+        "url": "https://example.com",
+        "country": "be"
+      },
+      "metadata": {
+        "imageUrl": "https://example.com/images/parliament.jpg",
+        "publishedAt": "2025-05-01T18:42:00Z",
+        "sourceLanguage": "en"
+      }
+    },
+    {
+      "citationId": 2,
+      "title": "Industry warns over AI compliance deadlines",
+      "description": "Trade bodies said the proposed timeline is unworkable for smaller providers.",
+      "url": "https://example.org/news/industry-warns-ai-deadlines",
+      "publisher": {
+        "name": "Example Business Review",
+        "url": "https://example.org",
+        "country": "ie"
+      },
+      "metadata": {
+        "imageUrl": "https://example.org/images/compliance.jpg",
+        "publishedAt": "2025-05-02T06:10:00Z",
+        "sourceLanguage": "en"
+      }
+    }
+  ],
+  "generatedAt": "2025-05-02T09:15:30Z"
+}

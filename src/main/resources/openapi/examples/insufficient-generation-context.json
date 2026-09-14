@@ -1,0 +1,8 @@
+{
+  "type": "about:blank",
+  "title": "Unprocessable Content",
+  "status": 422,
+  "detail": "Not enough Articles were found to generate a News Brief.",
+  "instance": "/api/briefs/generate",
+  "code": "INSUFFICIENT_GENERATION_CONTEXT"
+}

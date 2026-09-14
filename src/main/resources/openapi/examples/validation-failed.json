@@ -1,0 +1,12 @@
+{
+  "type": "about:blank",
+  "title": "Bad Request",
+  "status": 400,
+  "detail": "The request is invalid.",
+  "instance": "/api/briefs/generate",
+  "code": "INVALID_REQUEST",
+  "errors": [
+    { "field": "fromBeforeTo", "message": "from must be before to" },
+    { "field": "query", "message": "must not be blank" }
+  ]
+}
