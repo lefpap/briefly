@@ -6,10 +6,10 @@ spring:
 
   ai:
     openai:
-      base-url: ${BRIEFLY_AI_BASE_URL:https://generativelanguage.googleapis.com/v1beta/openai}
+      base-url: ${BRIEFLY_AI_BASE_URL}
       api-key: ${BRIEFLY_AI_API_KEY}
       chat:
-        model: ${BRIEFLY_AI_MODEL:gemini-3.7-flash}
+        model: ${BRIEFLY_AI_MODEL}
 
 springdoc:
   # Publish only the two public News Brief endpoints.
