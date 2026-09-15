@@ -23,9 +23,8 @@ BRIEFLY_AI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
 BRIEFLY_AI_MODEL=gemini-3.7-flash
 ```
 
-All four variables are required. An empty `BRIEFLY_AI_BASE_URL` sends AI requests to OpenAI, so
-don't leave any of them blank. Briefly reads `.env` from the directory you start it in, which is the
-project root with Maven. It's a Java properties file, so don't quote values. Environment variables
+All four variables are required. Briefly reads `.env` from the directory you start it in, which is
+the project root with Maven. It's a Java properties file, so don't quote values. Environment variables
 override it.
 
 ### Other AI providers
@@ -40,7 +39,7 @@ Set all three `BRIEFLY_AI_*` variables. The base URL includes the provider's pat
 | OpenRouter | `https://openrouter.ai/api/v1`                            | [OpenRouter models](https://openrouter.ai/models), with the provider prefix |
 | Ollama     | `http://localhost:11434/v1`                               | Run `ollama list`                                                           |
 
-Ollama ignores the API key, so any placeholder such as `ollama` works.
+Ollama ignores the API key, but Briefly still requires one, so use a placeholder such as `ollama`.
 
 ## Run
 
@@ -57,12 +56,11 @@ java -jar target/briefly-0.0.1-SNAPSHOT.jar
 
 On Windows, use `.\mvnw.cmd`. Briefly listens on port 8080. Set `SERVER_PORT` to change it.
 
-Of the four variables, only a missing `BRIEFLY_AI_BASE_URL` stops startup. Briefly doesn't check the
-keys or the model until the first News Brief request, which returns `502` if one is wrong.
+Briefly won't start if any variable is missing or blank. A wrong key, base URL, or model shows up as
+a `502` on the first News Brief request.
 
-Logs default to `WARN`. Set `LOGGING_LEVEL_IO_GITHUB_LEFPAP_BRIEFLY=INFO` to see request timings,
-Article counts, and token usage. Every API response has an `X-Correlation-ID` header that matches
-its log lines.
+Briefly logs each request's duration, GNews and AI call timings, Article counts, and token usage.
+Every API response has an `X-Correlation-ID` header that matches its log lines.
 
 ## API
 
@@ -162,13 +160,14 @@ The page ends with a card for each Source Article:
 
 Errors are [Problem Details](https://www.rfc-editor.org/rfc/rfc9457) with a stable `code`:
 
-| Status | `code`                            | Cause                                                           |
-|--------|-----------------------------------|-----------------------------------------------------------------|
-| `400`  | `INVALID_REQUEST`                 | Invalid JSON or field. `errors` lists each problem.             |
-| `422`  | `INSUFFICIENT_GENERATION_CONTEXT` | GNews found fewer than two Articles.                            |
-| `502`  | `ARTICLE_SEARCH_FAILED`           | GNews failed, for example on a bad key, quota, or rate limit.   |
-| `502`  | `BRIEF_GENERATION_FAILED`         | The AI call failed or its output was unusable.                  |
-| `500`  | `INTERNAL_ERROR`                  | Unexpected error in Briefly.                                    |
+| Status                     | `code`                            | Cause                                                                       |
+|----------------------------|-----------------------------------|-----------------------------------------------------------------------------|
+| `400`                      | `INVALID_REQUEST`                 | Invalid JSON or field. `errors` lists each problem.                         |
+| `404`, `405`, `406`, `415` | `INVALID_REQUEST`                 | Unknown path, wrong HTTP method, or unsupported `Accept` or `Content-Type`. |
+| `422`                      | `INSUFFICIENT_GENERATION_CONTEXT` | GNews found fewer than two Articles.                                        |
+| `502`                      | `ARTICLE_SEARCH_FAILED`           | GNews failed, for example on a bad key, quota, or rate limit.               |
+| `502`                      | `BRIEF_GENERATION_FAILED`         | The AI call failed or its output was unusable.                              |
+| `500`                      | `INTERNAL_ERROR`                  | Unexpected error in Briefly.                                                |
 
 ## Limits
 
@@ -178,8 +177,7 @@ as typed. GNews treats quotes, `AND`, `OR`, and `NOT` as operators and requires 
 to be quoted.
 
 Nothing is stored or cached, so repeating a request calls both providers again and can return a
-different News Brief. Briefly doesn't rate-limit, track quotas, or retry failed calls. The AI client
-keeps Spring AI's defaults, though, which retry up to 3 times with a 60-second timeout per attempt.
+different News Brief. Briefly doesn't rate-limit, track quotas, or retry failed GNews or AI calls.
 
 The GNews free plan is for development and testing only, and has these limits:
 

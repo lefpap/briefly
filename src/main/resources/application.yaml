@@ -6,10 +6,13 @@ spring:
 
   ai:
     openai:
-      base-url: ${BRIEFLY_AI_BASE_URL}
-      api-key: ${BRIEFLY_AI_API_KEY}
+      # Empty defaults let AiProviderProperties report a missing variable at startup.
+      base-url: ${BRIEFLY_AI_BASE_URL:}
+      api-key: ${BRIEFLY_AI_API_KEY:}
+      # A failed AI call is reported once instead of being retried.
+      max-retries: 0
       chat:
-        model: ${BRIEFLY_AI_MODEL}
+        model: ${BRIEFLY_AI_MODEL:}
 
 springdoc:
   # Publish only the two public News Brief endpoints.
@@ -20,7 +23,7 @@ springdoc:
 gnews:
   client:
     base-url: https://gnews.io/api/v4
-    api-key: ${GNEWS_API_KEY}
+    api-key: ${GNEWS_API_KEY:}
 
 logging:
   pattern:
@@ -29,3 +32,4 @@ logging:
 
   level:
     root: WARN
+    io.github.lefpap.briefly: INFO

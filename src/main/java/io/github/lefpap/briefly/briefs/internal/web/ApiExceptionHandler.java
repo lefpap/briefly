@@ -7,8 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -27,6 +29,10 @@ import java.util.*;
  * what normal operational logs must not: a failed GNews call unwraps to a RestClientResponseException
  * whose message embeds the raw response body. Their stable code is still logged at {@code WARN}, and
  * the GNews call logs its upstream status, so the failure stays visible without its content.
+ *
+ * <p>Spring MVC rejects some requests before they reach a controller: an unknown path, or a method or
+ * media type an endpoint doesn't support. Those exceptions carry their own 4xx status, so they are
+ * reported as invalid requests with that status rather than as unexpected failures.
  */
 @Slf4j
 @RestControllerAdvice
@@ -115,7 +121,11 @@ public class ApiExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    ProblemDetail handleUnexpected(Exception exception, HttpServletRequest request) {
+    ResponseEntity<ProblemDetail> handleUnexpected(Exception exception, HttpServletRequest request) {
+        if (exception instanceof ErrorResponse rejection && rejection.getStatusCode().is4xxClientError()) {
+            return handleRejectedRequest(rejection, request);
+        }
+
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         problemDetail.setDetail("An unexpected error occurred.");
         problemDetail.setProperty("code", INTERNAL_ERROR);
@@ -123,7 +133,20 @@ public class ApiExceptionHandler {
         logDetails(problemDetail);
 
         log.error("Unexpected failure", exception);
-        return problemDetail;
+        return ResponseEntity.internalServerError().body(problemDetail);
+    }
+
+    private ResponseEntity<ProblemDetail> handleRejectedRequest(ErrorResponse rejection, HttpServletRequest request) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(rejection.getStatusCode());
+        problemDetail.setDetail("The request is invalid.");
+        problemDetail.setProperty("code", INVALID_REQUEST);
+        problemDetail.setInstance(URI.create(request.getRequestURI()));
+        logDetails(problemDetail);
+
+        // Keeps headers such as Allow on a 405, which tell the client what the endpoint accepts.
+        return ResponseEntity.status(rejection.getStatusCode())
+            .headers(rejection.getHeaders())
+            .body(problemDetail);
     }
 
     private void logDetails(ProblemDetail problemDetail) {
