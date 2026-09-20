@@ -24,8 +24,8 @@ public record BriefResponse(
     String title,
 
     @Schema(description = """
-        Narrative synthesis of the Highlights. It may span multiple paragraphs but introduces no \
-        facts that are absent from the Highlights.""")
+        Narrative synthesis of the Highlights, in up to five paragraphs separated by blank lines. It \
+        introduces no facts that are absent from the Highlights.""")
     String overview,
 
     @ArraySchema(
@@ -121,7 +121,7 @@ public record BriefResponse(
         URI url,
 
         @Schema(description = """
-            Publication Country: the country the Publisher is based in. It does not identify where \
+            Publication Country: the country the Publisher is based in. It does not identify where
             the reported event took place. May be null when the provider does not report it.""",
             example = "be")
         String country
@@ -140,7 +140,7 @@ public record BriefResponse(
         Instant publishedAt,
 
         @Schema(description = """
-            Source Language of the Article. Article search is restricted to English, so this is \
+            Source Language of the Article. Article search is restricted to English, so this is
             `en`. The News Brief is written in English independently of this value.""",
             example = "en")
         String sourceLanguage

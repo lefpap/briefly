@@ -21,7 +21,7 @@ public record GeneratedBrief(
     String title,
 
     @JsonProperty(required = true)
-    @JsonPropertyDescription("An Overview synthesizing the Highlights, with no additional facts.")
+    @JsonPropertyDescription("An Overview of up to five paragraphs, separated by blank lines, synthesizing the Highlights, with no additional facts.")
     @NotBlank
     String overview,
 

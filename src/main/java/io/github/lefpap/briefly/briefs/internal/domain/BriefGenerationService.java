@@ -28,7 +28,8 @@ public class BriefGenerationService {
         
         Produce:
         - A short, neutral title.
-        - An Overview synthesizing the Highlights without introducing new facts.
+        - An Overview of up to five paragraphs, separated by blank lines,
+          synthesizing the Highlights without introducing new facts.
         - One to five Highlights, ordered by importance and then recency.
         
         Each Highlight is a self-contained narrative section about one important
