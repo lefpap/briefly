@@ -1,8 +1,8 @@
 package io.github.lefpap.briefly.briefs.internal.web;
 
-import io.github.lefpap.briefly.briefs.internal.domain.exception.BriefGenerationException;
-import io.github.lefpap.briefly.briefs.internal.domain.exception.InsufficientGenerationContextException;
-import io.github.lefpap.briefly.news.api.exception.ArticleSearchException;
+import io.github.lefpap.briefly.briefs.internal.domain.BriefGenerationException;
+import io.github.lefpap.briefly.briefs.internal.domain.InsufficientGenerationContextException;
+import io.github.lefpap.briefly.news.api.ArticleSearchException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

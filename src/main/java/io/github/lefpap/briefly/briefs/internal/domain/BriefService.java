@@ -1,10 +1,8 @@
-package io.github.lefpap.briefly.briefs.internal.domain.service;
+package io.github.lefpap.briefly.briefs.internal.domain;
 
-import io.github.lefpap.briefly.briefs.internal.domain.model.Brief;
-import io.github.lefpap.briefly.briefs.internal.domain.model.BriefGenerationResult;
-import io.github.lefpap.briefly.news.api.model.Article;
-import io.github.lefpap.briefly.news.api.model.ArticleSearchCriteria;
-import io.github.lefpap.briefly.news.api.service.ArticleSearchService;
+import io.github.lefpap.briefly.news.api.Article;
+import io.github.lefpap.briefly.news.api.ArticleSearchCriteria;
+import io.github.lefpap.briefly.news.api.ArticleSearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

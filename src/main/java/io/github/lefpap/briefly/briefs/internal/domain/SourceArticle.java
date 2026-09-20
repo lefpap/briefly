@@ -1,6 +1,6 @@
-package io.github.lefpap.briefly.briefs.internal.domain.model;
+package io.github.lefpap.briefly.briefs.internal.domain;
 
-import io.github.lefpap.briefly.news.api.model.Article;
+import io.github.lefpap.briefly.news.api.Article;
 import lombok.Builder;
 
 @Builder(toBuilder = true)

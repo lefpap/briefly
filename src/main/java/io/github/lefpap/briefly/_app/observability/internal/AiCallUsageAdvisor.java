@@ -1,4 +1,4 @@
-package io.github.lefpap.briefly.observability;
+package io.github.lefpap.briefly._app.observability.internal;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;

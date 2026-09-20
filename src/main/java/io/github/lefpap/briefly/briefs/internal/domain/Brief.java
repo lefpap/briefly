@@ -1,6 +1,6 @@
-package io.github.lefpap.briefly.briefs.internal.domain.model;
+package io.github.lefpap.briefly.briefs.internal.domain;
 
-import io.github.lefpap.briefly.news.api.model.ArticleSearchCriteria;
+import io.github.lefpap.briefly.news.api.ArticleSearchCriteria;
 import lombok.Builder;
 
 import java.time.Instant;

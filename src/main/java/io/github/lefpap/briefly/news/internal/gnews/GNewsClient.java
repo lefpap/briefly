@@ -1,6 +1,6 @@
 package io.github.lefpap.briefly.news.internal.gnews;
 
-import io.github.lefpap.briefly.observability.HttpCallTimingInterceptor;
+import io.github.lefpap.briefly._app.observability.api.HttpCallTimingInterceptor;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;

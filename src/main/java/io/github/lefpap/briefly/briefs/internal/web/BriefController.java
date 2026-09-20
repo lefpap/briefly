@@ -1,14 +1,13 @@
 package io.github.lefpap.briefly.briefs.internal.web;
 
-import io.github.lefpap.briefly.briefs.internal.domain.model.Brief;
-import io.github.lefpap.briefly.briefs.internal.domain.service.BriefService;
-import io.github.lefpap.briefly.news.api.model.ArticleSearchCriteria;
+import io.github.lefpap.briefly.briefs.internal.domain.Brief;
+import io.github.lefpap.briefly.briefs.internal.domain.BriefService;
+import io.github.lefpap.briefly.news.api.ArticleSearchCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
@@ -45,19 +44,19 @@ public class BriefController {
             At least two Articles must be available, otherwise the request fails with \
             `INSUFFICIENT_GENERATION_CONTEXT`."""
     )
-    @ApiResponses({
-        @ApiResponse(
-            responseCode = "200",
-            description = "The News Brief was generated.",
-            content = @Content(
-                mediaType = MediaType.APPLICATION_JSON_VALUE,
-                schema = @Schema(implementation = BriefResponse.class),
-                examples = @ExampleObject(name = "NewsBrief", ref = OpenApiConfig.NEWS_BRIEF_EXAMPLE))),
-        @ApiResponse(responseCode = "400", ref = OpenApiConfig.INVALID_REQUEST_RESPONSE),
-        @ApiResponse(responseCode = "422", ref = OpenApiConfig.INSUFFICIENT_GENERATION_CONTEXT_RESPONSE),
-        @ApiResponse(responseCode = "500", ref = OpenApiConfig.INTERNAL_ERROR_RESPONSE),
-        @ApiResponse(responseCode = "502", ref = OpenApiConfig.UPSTREAM_FAILURE_RESPONSE)
-    })
+
+    @ApiResponse(
+        responseCode = "200",
+        description = "The News Brief was generated.",
+        content = @Content(
+            mediaType = MediaType.APPLICATION_JSON_VALUE,
+            schema = @Schema(implementation = BriefResponse.class),
+            examples = @ExampleObject(name = "NewsBrief", ref = OpenApiConfig.NEWS_BRIEF_EXAMPLE)
+        ))
+    @ApiResponse(responseCode = "400", ref = OpenApiConfig.INVALID_REQUEST_RESPONSE)
+    @ApiResponse(responseCode = "422", ref = OpenApiConfig.INSUFFICIENT_GENERATION_CONTEXT_RESPONSE)
+    @ApiResponse(responseCode = "500", ref = OpenApiConfig.INTERNAL_ERROR_RESPONSE)
+    @ApiResponse(responseCode = "502", ref = OpenApiConfig.UPSTREAM_FAILURE_RESPONSE)
     @PostMapping("/generate")
     public BriefResponse generateBrief(@Valid @RequestBody BriefRequest request) {
         ArticleSearchCriteria criteria = BriefMapper.toArticleSearchCriteria(request);

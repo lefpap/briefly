@@ -1,8 +1,8 @@
 package io.github.lefpap.briefly.briefs.internal.web;
 
-import io.github.lefpap.briefly.briefs.internal.domain.model.Brief;
-import io.github.lefpap.briefly.briefs.internal.domain.service.BriefService;
-import io.github.lefpap.briefly.news.api.model.ArticleSearchCriteria;
+import io.github.lefpap.briefly.briefs.internal.domain.Brief;
+import io.github.lefpap.briefly.briefs.internal.domain.BriefService;
+import io.github.lefpap.briefly.news.api.ArticleSearchCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

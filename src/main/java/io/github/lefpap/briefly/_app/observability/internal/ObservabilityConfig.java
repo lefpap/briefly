@@ -1,5 +1,6 @@
-package io.github.lefpap.briefly.observability;
+package io.github.lefpap.briefly._app.observability.internal;
 
+import io.github.lefpap.briefly._app.observability.api.HttpCallTimingInterceptor;
 import org.springframework.ai.chat.client.ChatClientBuilderCustomizer;
 import org.springframework.boot.restclient.RestClientCustomizer;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

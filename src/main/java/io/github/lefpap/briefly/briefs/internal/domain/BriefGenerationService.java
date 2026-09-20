@@ -1,13 +1,6 @@
-package io.github.lefpap.briefly.briefs.internal.domain.service;
+package io.github.lefpap.briefly.briefs.internal.domain;
 
-import io.github.lefpap.briefly.briefs.internal.domain.exception.BriefGenerationException;
-import io.github.lefpap.briefly.briefs.internal.domain.model.Brief;
-import io.github.lefpap.briefly.briefs.internal.domain.model.BriefGenerationResult;
-import io.github.lefpap.briefly.briefs.internal.domain.model.GeneratedBrief;
-import io.github.lefpap.briefly.briefs.internal.domain.model.SourceArticle;
-import io.github.lefpap.briefly.briefs.internal.domain.util.BriefGenerationContextValidator;
-import io.github.lefpap.briefly.briefs.internal.domain.util.GeneratedBriefValidator;
-import io.github.lefpap.briefly.news.api.model.Article;
+import io.github.lefpap.briefly.news.api.Article;
 import jakarta.annotation.Nullable;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;

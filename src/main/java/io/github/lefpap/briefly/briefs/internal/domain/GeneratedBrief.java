@@ -1,4 +1,4 @@
-package io.github.lefpap.briefly.briefs.internal.domain.model;
+package io.github.lefpap.briefly.briefs.internal.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
