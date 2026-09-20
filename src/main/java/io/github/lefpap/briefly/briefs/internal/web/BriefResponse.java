@@ -49,8 +49,10 @@ public record BriefResponse(
 ) {
 
     @Builder(toBuilder = true)
-    @Schema(name = "BriefCriteria", description = """
-        The Query and the resolved Reporting Window used to produce the News Brief.""")
+    @Schema(
+        name = "BriefCriteria",
+        description = "The Query and the resolved Reporting Window used to produce the News Brief."
+    )
     public record Criteria(
         @Schema(description = "The Query as submitted.",
             example = "European Union artificial intelligence regulation")

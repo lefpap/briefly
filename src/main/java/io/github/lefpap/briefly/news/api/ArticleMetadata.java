@@ -1,4 +1,4 @@
-package io.github.lefpap.briefly.news.api.model;
+package io.github.lefpap.briefly.news.api;
 
 import lombok.Builder;
 

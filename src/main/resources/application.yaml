@@ -6,10 +6,24 @@ spring:
 
   ai:
     openai:
-      base-url: ${BRIEFLY_AI_BASE_URL}
-      api-key: ${BRIEFLY_AI_API_KEY}
+      api-key: ${OPENAI_API_KEY:}
+
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY:}
+
+    google:
+      genai:
+        api-key: ${GEMINI_API_KEY:}
+
+    ollama:
       chat:
-        model: ${BRIEFLY_AI_MODEL}
+        num-ctx: 16384
+
+app:
+  ai:
+    agents:
+      brief-generation:
+        model: ollama/qwen3.5:4b
 
 springdoc:
   # Publish only the two public News Brief endpoints.
@@ -20,7 +34,7 @@ springdoc:
 gnews:
   client:
     base-url: https://gnews.io/api/v4
-    api-key: ${GNEWS_API_KEY}
+    api-key: ${GNEWS_API_KEY:}
 
 logging:
   pattern:
@@ -29,3 +43,4 @@ logging:
 
   level:
     root: WARN
+    io.github.lefpap.briefly: DEBUG

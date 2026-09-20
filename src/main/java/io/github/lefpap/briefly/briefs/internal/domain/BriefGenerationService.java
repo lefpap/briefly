@@ -1,15 +1,8 @@
-package io.github.lefpap.briefly.briefs.internal.domain.service;
+package io.github.lefpap.briefly.briefs.internal.domain;
 
-import io.github.lefpap.briefly.briefs.internal.domain.exception.BriefGenerationException;
-import io.github.lefpap.briefly.briefs.internal.domain.model.Brief;
-import io.github.lefpap.briefly.briefs.internal.domain.model.BriefGenerationResult;
-import io.github.lefpap.briefly.briefs.internal.domain.model.GeneratedBrief;
-import io.github.lefpap.briefly.briefs.internal.domain.model.SourceArticle;
-import io.github.lefpap.briefly.briefs.internal.domain.util.BriefGenerationContextValidator;
-import io.github.lefpap.briefly.briefs.internal.domain.util.GeneratedBriefValidator;
-import io.github.lefpap.briefly.news.api.model.Article;
+import io.github.lefpap.briefly.news.api.Article;
+import io.github.lefpap.briefly._app.ai.api.AiChatClientBuilderFactory;
 import jakarta.annotation.Nullable;
-import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,18 +56,16 @@ public class BriefGenerationService {
         {SOURCE_ARTICLES}
         """;
 
-    private final ChatClient chatClient;
+    private final AiChatClientBuilderFactory chatClientFactory;
     private final BriefGenerationContextValidator generationContextValidator;
     private final GeneratedBriefValidator generatedBriefValidator;
 
     public BriefGenerationService(
-        ChatClient.Builder chatClientBuilder,
+        AiChatClientBuilderFactory chatClientFactory,
         BriefGenerationContextValidator generationContextValidator,
         GeneratedBriefValidator generatedBriefValidator
     ) {
-        this.chatClient = chatClientBuilder
-            .defaultSystem(SYSTEM_PROMPT)
-            .build();
+        this.chatClientFactory = chatClientFactory;
         this.generationContextValidator = generationContextValidator;
         this.generatedBriefValidator = generatedBriefValidator;
     }
@@ -90,7 +81,10 @@ public class BriefGenerationService {
 
     private @Nullable GeneratedBrief requestGeneratedBrief(String query, String articlesContext) {
         try {
-            return chatClient.prompt()
+            return chatClientFactory.create("brief-generation")
+                .defaultSystem(SYSTEM_PROMPT)
+                .build()
+                .prompt()
                 .user(u -> u.text(USER_PROMPT)
                     .param("USER_QUERY", query)
                     .param("SOURCE_ARTICLES", articlesContext))

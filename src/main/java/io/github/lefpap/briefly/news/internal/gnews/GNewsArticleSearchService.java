@@ -1,11 +1,11 @@
 package io.github.lefpap.briefly.news.internal.gnews;
 
-import io.github.lefpap.briefly.news.api.exception.ArticleSearchException;
-import io.github.lefpap.briefly.news.api.model.Article;
-import io.github.lefpap.briefly.news.api.model.ArticleMetadata;
-import io.github.lefpap.briefly.news.api.model.ArticleSearchCriteria;
-import io.github.lefpap.briefly.news.api.model.Publisher;
-import io.github.lefpap.briefly.news.api.service.ArticleSearchService;
+import io.github.lefpap.briefly.news.api.Article;
+import io.github.lefpap.briefly.news.api.ArticleMetadata;
+import io.github.lefpap.briefly.news.api.ArticleSearchCriteria;
+import io.github.lefpap.briefly.news.api.ArticleSearchException;
+import io.github.lefpap.briefly.news.api.ArticleSearchService;
+import io.github.lefpap.briefly.news.api.Publisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;

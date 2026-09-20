@@ -1,7 +1,6 @@
-package io.github.lefpap.briefly.briefs.internal.domain.util;
+package io.github.lefpap.briefly.briefs.internal.domain;
 
-import io.github.lefpap.briefly.briefs.internal.domain.exception.InsufficientGenerationContextException;
-import io.github.lefpap.briefly.news.api.model.Article;
+import io.github.lefpap.briefly.news.api.Article;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

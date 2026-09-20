@@ -1,8 +1,5 @@
-package io.github.lefpap.briefly.briefs.internal.domain.util;
+package io.github.lefpap.briefly.briefs.internal.domain;
 
-import io.github.lefpap.briefly.briefs.internal.domain.exception.BriefGenerationException;
-import io.github.lefpap.briefly.briefs.internal.domain.model.GeneratedBrief;
-import io.github.lefpap.briefly.briefs.internal.domain.model.SourceArticle;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;

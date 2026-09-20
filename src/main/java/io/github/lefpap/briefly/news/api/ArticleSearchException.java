@@ -1,4 +1,4 @@
-package io.github.lefpap.briefly.news.api.exception;
+package io.github.lefpap.briefly.news.api;
 
 public class ArticleSearchException extends RuntimeException {
 

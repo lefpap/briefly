@@ -1,4 +1,4 @@
-package io.github.lefpap.briefly.observability;
+package io.github.lefpap.briefly._app.observability.internal;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

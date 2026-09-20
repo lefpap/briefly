@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.AutoConfigurationImportFilter=\
+io.github.lefpap.briefly._app.ai.internal.AiAutoConfigurationImportFilter

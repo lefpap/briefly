@@ -1,8 +1,8 @@
 package io.github.lefpap.briefly.briefs.internal.web;
 
-import io.github.lefpap.briefly.briefs.internal.domain.model.Brief;
-import io.github.lefpap.briefly.briefs.internal.domain.model.SourceArticle;
-import io.github.lefpap.briefly.news.api.model.ArticleSearchCriteria;
+import io.github.lefpap.briefly.briefs.internal.domain.Brief;
+import io.github.lefpap.briefly.briefs.internal.domain.SourceArticle;
+import io.github.lefpap.briefly.news.api.ArticleSearchCriteria;
 
 import java.util.List;
 

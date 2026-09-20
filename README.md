@@ -1,7 +1,7 @@
 # Briefly
 
 Briefly is a local API that turns recent news into a short News Brief. You send a Query, Briefly
-searches GNews for matching English Articles, and an OpenAI-compatible model writes a title, an
+searches GNews for matching English Articles, and an AI model writes a title, an
 Overview, and one to five Highlights. Each Highlight lists the Source Articles meant to support it.
 Domain terms are defined in [docs/CONTEXT.md](docs/CONTEXT.md).
 
@@ -9,38 +9,60 @@ Domain terms are defined in [docs/CONTEXT.md](docs/CONTEXT.md).
 
 - JDK 25 (the Maven Wrapper downloads Maven for you)
 - A [GNews](https://gnews.io) API key
-- An API key for an OpenAI-compatible Chat Completions provider, such as
-  [Gemini](https://ai.google.dev/gemini-api/docs/api-key)
+- An API key for OpenAI, Anthropic, or Gemini, or a local Ollama server with a model installed
 
 ## Setup
 
-Copy `.env.example` to `.env` and add both keys. Gemini's base URL and model are already filled in:
+Copy `.env.example` to `.env` and fill in your GNews key and any cloud AI provider keys you want
+to make available. For example, to enable Gemini:
 
 ```dotenv
 GNEWS_API_KEY=your-gnews-key
-BRIEFLY_AI_API_KEY=your-gemini-key
-BRIEFLY_AI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
-BRIEFLY_AI_MODEL=gemini-3.7-flash
+GEMINI_API_KEY=your-gemini-key
 ```
 
-All four variables are required. An empty `BRIEFLY_AI_BASE_URL` sends AI requests to OpenAI, so
-don't leave any of them blank. Briefly reads `.env` from the directory you start it in, which is the
-project root with Maven. It's a Java properties file, so don't quote values. Environment variables
-override it.
+The GNews key is required at startup; a cloud AI key is required when its agent runs. Briefly reads
+`.env` from the directory you start it in, which is the project root with Maven. It's a Java
+properties file, so don't quote values. Environment variables override it.
 
-### Other AI providers
+Select the News Brief generation model in
+[`src/main/resources/application.yaml`](src/main/resources/application.yaml):
 
-Set all three `BRIEFLY_AI_*` variables. The base URL includes the provider's path prefix, such as
-`/v1`, but not `/chat/completions`. The model is the provider's API identifier, not its display name.
+```yaml
+app:
+  ai:
+    agents:
+      brief-generation:
+        model: google-genai/gemini-2.5-flash
+```
 
-| Provider   | `BRIEFLY_AI_BASE_URL`                                     | Model IDs                                                                   |
-|------------|-----------------------------------------------------------|-----------------------------------------------------------------------------|
-| Gemini     | `https://generativelanguage.googleapis.com/v1beta/openai` | [Gemini models](https://ai.google.dev/gemini-api/docs/models)               |
-| OpenAI     | `https://api.openai.com/v1`                               | [OpenAI models](https://developers.openai.com/api/docs/models)              |
-| OpenRouter | `https://openrouter.ai/api/v1`                            | [OpenRouter models](https://openrouter.ai/models), with the provider prefix |
-| Ollama     | `http://localhost:11434/v1`                               | Run `ollama list`                                                           |
+The checked-in selection is `ollama/qwen3.5:4b`, which requires a running local Ollama server
+with that model installed. Adding a cloud provider's key makes it available; change the model
+property above to use it for News Brief generation.
 
-Ollama ignores the API key, so any placeholder such as `ollama` works.
+### AI providers and models
+
+Set `app.ai.agents.brief-generation.model` to `provider/model`, supply the selected provider's key,
+and restart.
+Briefly splits at the first `/`: the prefix selects the integration, and everything after it is
+passed unchanged as the provider's model identifier, including any further slashes. Both parts
+must be nonblank, whitespace is rejected, and the model identifier cannot begin with `/`.
+You can keep keys for multiple providers configured; unused keys may be left empty.
+
+| Provider | Model prefix | Credential |
+|----------|--------------|------------|
+| OpenAI | `openai` | `OPENAI_API_KEY` |
+| Anthropic | `anthropic` | `ANTHROPIC_API_KEY` |
+| Gemini | `google-genai` | `GEMINI_API_KEY` |
+| Ollama | `ollama` | None for local Ollama |
+
+For Ollama, start the server and choose an installed model from `ollama list`.
+Spring AI supplies the default provider endpoints, including `http://localhost:11434` for Ollama.
+Custom endpoints can use Spring's own properties, such as `SPRING_AI_OLLAMA_BASE_URL`,
+`SPRING_AI_OPENAI_BASE_URL`, or `SPRING_AI_ANTHROPIC_BASE_URL`.
+
+Leave `spring.ai.model.chat` unset and select the model through
+`app.ai.agents.brief-generation.model`. Restart after changing credentials or model configuration.
 
 ## Run
 
@@ -57,12 +79,13 @@ java -jar target/briefly-0.0.1-SNAPSHOT.jar
 
 On Windows, use `.\mvnw.cmd`. Briefly listens on port 8080. Set `SERVER_PORT` to change it.
 
-Of the four variables, only a missing `BRIEFLY_AI_BASE_URL` stops startup. Briefly doesn't check the
-keys or the model until the first News Brief request, which returns `502` if one is wrong.
+Briefly rejects malformed agent model references and unsupported providers when an agent is resolved. Missing
+AI keys do not prevent startup; selecting such a provider during a News Brief request fails
+with an error identifying the agent and unavailable provider. A wrong nonblank key, base URL, or model
+may fail during client initialization or on the first request. AI failures are reported as a `502`.
 
-Logs default to `WARN`. Set `LOGGING_LEVEL_IO_GITHUB_LEFPAP_BRIEFLY=INFO` to see request timings,
-Article counts, and token usage. Every API response has an `X-Correlation-ID` header that matches
-its log lines.
+Briefly logs each request's duration, GNews and AI call timings, Article counts, and token usage.
+Every API response has an `X-Correlation-ID` header that matches its log lines.
 
 ## API
 
@@ -162,13 +185,14 @@ The page ends with a card for each Source Article:
 
 Errors are [Problem Details](https://www.rfc-editor.org/rfc/rfc9457) with a stable `code`:
 
-| Status | `code`                            | Cause                                                           |
-|--------|-----------------------------------|-----------------------------------------------------------------|
-| `400`  | `INVALID_REQUEST`                 | Invalid JSON or field. `errors` lists each problem.             |
-| `422`  | `INSUFFICIENT_GENERATION_CONTEXT` | GNews found fewer than two Articles.                            |
-| `502`  | `ARTICLE_SEARCH_FAILED`           | GNews failed, for example on a bad key, quota, or rate limit.   |
-| `502`  | `BRIEF_GENERATION_FAILED`         | The AI call failed or its output was unusable.                  |
-| `500`  | `INTERNAL_ERROR`                  | Unexpected error in Briefly.                                    |
+| Status                     | `code`                            | Cause                                                                       |
+|----------------------------|-----------------------------------|-----------------------------------------------------------------------------|
+| `400`                      | `INVALID_REQUEST`                 | Invalid JSON or field. `errors` lists each problem.                         |
+| `404`, `405`, `406`, `415` | `INVALID_REQUEST`                 | Unknown path, wrong HTTP method, or unsupported `Accept` or `Content-Type`. |
+| `422`                      | `INSUFFICIENT_GENERATION_CONTEXT` | GNews found fewer than two Articles.                                        |
+| `502`                      | `ARTICLE_SEARCH_FAILED`           | GNews failed, for example on a bad key, quota, or rate limit.               |
+| `502`                      | `BRIEF_GENERATION_FAILED`         | The AI call failed or its output was unusable.                              |
+| `500`                      | `INTERNAL_ERROR`                  | Unexpected error in Briefly.                                                |
 
 ## Limits
 
@@ -178,8 +202,7 @@ as typed. GNews treats quotes, `AND`, `OR`, and `NOT` as operators and requires 
 to be quoted.
 
 Nothing is stored or cached, so repeating a request calls both providers again and can return a
-different News Brief. Briefly doesn't rate-limit, track quotas, or retry failed calls. The AI client
-keeps Spring AI's defaults, though, which retry up to 3 times with a 60-second timeout per attempt.
+different News Brief. Briefly doesn't rate-limit, track quotas, or retry failed GNews or AI calls.
 
 The GNews free plan is for development and testing only, and has these limits:
 

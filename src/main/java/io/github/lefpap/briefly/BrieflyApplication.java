@@ -11,5 +11,4 @@ public class BrieflyApplication {
     static void main(String[] args) {
         SpringApplication.run(BrieflyApplication.class, args);
     }
-
 }

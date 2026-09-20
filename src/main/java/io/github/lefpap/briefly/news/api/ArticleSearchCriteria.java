@@ -1,4 +1,4 @@
-package io.github.lefpap.briefly.news.api.model;
+package io.github.lefpap.briefly.news.api;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
