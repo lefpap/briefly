@@ -120,8 +120,8 @@ curl -X POST http://localhost:8080/api/briefs/generate \
   -d '{"query": "European Union artificial intelligence regulation"}'
 ```
 
-The response echoes the resolved `criteria` and adds a `title`, an `overview`, up to five
-`highlights`, and the `sourceArticles` they cite. Shortened:
+The response echoes the resolved `criteria` and adds a `title`, an `overview` of up to five
+paragraphs, up to five `highlights`, and the `sourceArticles` they cite. Shortened:
 
 ```json
 {
@@ -202,7 +202,8 @@ as typed. GNews treats quotes, `AND`, `OR`, and `NOT` as operators and requires 
 to be quoted.
 
 Nothing is stored or cached, so repeating a request calls both providers again and can return a
-different News Brief. Briefly doesn't rate-limit, track quotas, or retry failed GNews or AI calls.
+different News Brief. Briefly doesn't rate-limit, track quotas, or retry failed GNews calls. Failed AI calls are retried as often as the selected provider's Spring AI integration retries them by
+default; Briefly neither adds retries of its own nor overrides those defaults.
 
 The GNews free plan is for development and testing only, and has these limits:
 
