@@ -34,3 +34,12 @@ build/
 
 ### Local environment ###
 .env
+
+### Impeccable (installed per machine) ###
+.agents/skills/
+.claude/skills/impeccable/
+.claude/agents/impeccable-*.md
+.codex/hooks.json
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/config.local.json

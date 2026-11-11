@@ -23,7 +23,7 @@ app:
   ai:
     agents:
       brief-generation:
-        model: ollama/qwen3.5:4b
+        model: openai/gpt-6.1-terra
 
 springdoc:
   # Publish only the two public News Brief endpoints.

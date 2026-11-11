@@ -3,137 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title th:text="${brief.title} + ' — Briefly'">News Brief — Briefly</title>
+    <title th:text="${brief.title} + ' · briefly.'">News Brief · briefly.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap">
     <style>
-        :root { color-scheme: light; --paper: #faf9f6; --ink: #242a2b; --muted: #62696a; --rule: #e2e5e2; --accent: #355e55; }
+        :root {
+            color-scheme: light;
+            --ground: #ecebe4;
+            --panel: #f6f5f0;
+            --ink: #141414;
+            --muted: #5c5a53;
+            --line: #d3d0c6;
+            --line-soft: #e2dfd6;
+            --masthead: #141414;
+            --lime: #d4f25a;
+            --lime-wash: #eef8c6;
+            --tone-0: #d4f25a;
+            --tone-1: #f6a05c;
+            --tone-2: #7ea9f2;
+            --tone-3: #f5b4c3;
+            --tone-4: #b6d4f7;
+            --radius: 6px;
+            --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, Menlo, monospace;
+        }
         * { box-sizing: border-box; }
-        body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.75 'Segoe UI', 'Avenir Next', 'Helvetica Neue', sans-serif; -webkit-font-smoothing: antialiased; }
-        a { color: var(--accent); text-underline-offset: .2em; }
-        a:hover { text-decoration: underline; }
-        a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-radius: 3px; }
-        .sheet { max-width: 1120px; margin: auto; padding: 0 40px; }
-        .masthead { padding: 24px 0; border-bottom: 1px solid var(--rule); }
-        .brand { font-size: 27px; font-weight: 750; letter-spacing: -.06em; }
-        .hero { max-width: 780px; margin: auto; padding: 56px 0 36px; }
-        .eyebrow { color: var(--accent); font-size: 11px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
-        h1, h2, h3 { line-height: 1.25; text-align: left; overflow-wrap: break-word; }
-        h1 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 650; letter-spacing: -.035em; margin: 14px 0 20px; }
-        h2 { font-size: 24px; font-weight: 650; letter-spacing: -.025em; margin: 0 0 20px; }
-        p { margin: 0 0 18px; }
-        .meta { font-size: 13px; line-height: 1.6; color: var(--muted); }
-        .criteria { display: flex; flex-wrap: wrap; gap: 16px 32px; margin: 26px 0 0; padding-top: 22px; border-top: 1px solid var(--rule); }
-        .criteria > div:first-child { flex-basis: 100%; }
-        dt { color: var(--muted); font-size: 11px; font-weight: 600; }
-        dd { font-size: 13px; margin: 3px 0 0; overflow-wrap: break-word; }
-        .reading { max-width: 780px; margin: auto; padding: 8px 0 56px; }
-        .prose { white-space: pre-line; overflow-wrap: break-word; word-break: normal; text-align: left; }
-        .overview { font-size: 18px; line-height: 1.85; }
-        .highlights { margin-top: 36px; }
-        .highlight { padding: 0 0 24px; margin-bottom: 24px; border-bottom: 1px solid var(--rule); }
-        .highlight:last-child { margin-bottom: 0; border: 0; padding-bottom: 0; }
-        .citations { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
-        .citations a { display: inline-grid; place-items: center; min-width: 28px; min-height: 28px; background: #eaf0ec; border-radius: 6px; text-decoration: none; font-weight: 600; }
-        .sources { padding: 32px 0 56px; border-top: 1px solid var(--rule); }
-        .section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; margin-bottom: 24px; }
-        .section-heading h2, .section-heading p { margin: 0; }
-        .source-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-        .source-card { min-width: 0; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; scroll-margin-top: 24px; }
-        .source-card:target { outline: 3px solid var(--accent); outline-offset: 4px; }
-        .image-region { position: relative; aspect-ratio: 2 / 1; overflow: hidden; background: #eaf0ec; }
-        .fallback { position: absolute; inset: 0; display: grid; place-items: center; color: #668377; background: linear-gradient(145deg, #eaf0ec, #dce7df); }
-        .fallback span { font-size: 48px; font-weight: 650; letter-spacing: -.07em; }
-        .image-region img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; color: transparent; }
-        .card-body { padding: 24px; display: flex; flex: 1; flex-direction: column; }
-        .card-meta { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; color: var(--muted); font-size: 12px; }
-        .citation-number { flex-shrink: 0; color: var(--accent); font-weight: 650; }
-        .publisher { min-width: 0; overflow-wrap: break-word; }
-        .publisher a { color: inherit; text-decoration: none; }
-        .card-body h3 { font-size: 21px; font-weight: 650; letter-spacing: -.02em; margin: 0 0 12px; line-height: 1.4; }
-        .card-body h3 a { color: var(--ink); text-decoration: none; }
-        .card-body h3 a:hover { color: var(--accent); text-decoration: underline; }
-        .card-description { font-size: 15px; line-height: 1.7; color: var(--muted); white-space: normal; overflow-wrap: break-word; margin-bottom: 20px; }
-        .card-date { margin-top: auto; font-size: 12px; color: var(--muted); padding-top: 12px; }
-        .footer { max-width: 780px; margin: auto; padding: 24px 0; border-top: 1px solid var(--rule); color: var(--muted); font-size: 12px; }
-        @media (max-width: 700px) {
-            .sheet { padding: 0 20px; }
-            .hero { padding-top: 32px; }
-            .source-grid { grid-template-columns: 1fr; gap: 20px; }
-            .card-body { padding: 20px; }
-            .criteria { gap: 14px 24px; }
-            .reading { padding-bottom: 36px; }
+        html { scroll-behavior: smooth; scrollbar-color: #b8b5aa var(--ground); }
+        body { margin: 0; background: var(--ground); color: var(--ink); font: 400 14.5px/1.7 var(--mono); font-variant-ligatures: none; -webkit-font-smoothing: antialiased; }
+        ::selection { background: var(--lime); color: var(--ink); }
+        a { color: inherit; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+        a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 3px; }
+        h1, h2, h3 { margin: 0; text-wrap: balance; overflow-wrap: break-word; }
+        p { margin: 0; }
+        svg { flex-shrink: 0; }
+        .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+        /* Frame: masthead + desk */
+        .masthead { background: var(--masthead); }
+        .masthead-inner { display: flex; align-items: center; max-width: 1260px; min-height: 60px; margin: 0 auto; padding: 0 40px; }
+        .wordmark { color: #f6f5f0; font-size: 22px; font-weight: 700; letter-spacing: -.03em; }
+        .wordmark span { color: var(--lime); }
+
+        .desk { padding: 28px 40px 56px; }
+        .desk-inner { max-width: 1180px; margin: 0 auto; }
+
+        /* Query bar */
+        .query { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; max-width: 980px; min-height: 52px; margin: 0; padding: 12px 18px; background: var(--panel); border: 1.5px solid var(--ink); border-radius: var(--radius); }
+        .query > div { display: flex; align-items: center; gap: 8px; min-width: 0; }
+        .query dd { margin: 0; }
+        .query > .query-main { flex: 1 1 320px; gap: 14px; }
+        .query-main dt { display: flex; }
+        .query-text { min-width: 0; font-size: 15px; font-weight: 500; overflow-wrap: anywhere; }
+        .window-item { font-size: 12px; color: var(--muted); }
+        .window-item dt { font-weight: 700; color: var(--ink); }
+
+        /* Title block */
+        .title-block { padding: 36px 0 28px; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
+        h1 { max-width: 30ch; font-size: clamp(26px, 3.2vw, 38px); font-weight: 800; line-height: 1.2; letter-spacing: -.035em; }
+        .generated { margin-top: 16px; font-size: 12px; color: var(--muted); }
+        .generated strong { margin-right: 6px; color: var(--ink); }
+
+        /* Brief layout */
+        .brief-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+        .main-column { display: grid; gap: 20px; min-width: 0; }
+        .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+        .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px 0; }
+        .panel-head h2 { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+        .panel-head svg { color: var(--ink); }
+        .panel-body { padding: 16px 22px 22px; }
+
+        /* Highlights */
+        .highlights { display: grid; margin: 0; padding: 0; list-style: none; }
+        .highlight { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid var(--line-soft); scroll-margin-top: 24px; }
+        .highlight:first-child { padding-top: 4px; border-top: 0; }
+        .highlight:last-child { padding-bottom: 0; }
+        .highlight:target { margin: 0 -12px; padding: 14px 12px; background: var(--lime-wash); border-radius: var(--radius); }
+        .highlight:target .tile { box-shadow: 0 0 0 2px var(--ink); }
+        .tile { display: grid; place-items: center; width: 28px; height: 28px; background: var(--lime); border-radius: 4px; color: var(--ink); font-size: 13px; font-weight: 700; line-height: 1; }
+        .highlight-text, .overview { max-width: 72ch; overflow-wrap: break-word; }
+        .highlight-text p + p, .overview p + p { margin-top: 1em; }
+        .cites { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+        .cites-label { color: var(--muted); font-size: 11px; }
+        .cite { display: inline-flex; align-items: center; gap: 7px; max-width: 100%; padding: 3px 9px 3px 3px; border: 1px solid var(--line); border-radius: 5px; background: #fbfaf7; font-size: 11.5px; font-weight: 500; text-decoration: none; transition: border-color .15s ease-out, background-color .15s ease-out; }
+        .cite:hover { border-color: var(--ink); background: #fff; }
+        .cite-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        /* Overview */
+
+        /* Badges */
+        .badge { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(20, 20, 20, .9); border-radius: 4px; background: var(--tone-0); color: var(--ink); font-size: 16px; font-weight: 800; line-height: 1; }
+        .badge.small { width: 20px; height: 20px; border-radius: 3px; font-size: 11px; }
+        .tone-1 { background: var(--tone-1); }
+        .tone-2 { background: var(--tone-2); }
+        .tone-3 { background: var(--tone-3); }
+        .tone-4 { background: var(--tone-4); }
+        .tone-none { background: var(--panel); }
+
+        /* Sources list */
+        .sources-panel { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; overscroll-behavior: contain; }
+        .sources-panel .panel-body { padding: 8px 10px 10px; }
+        .count { color: var(--muted); font-weight: 500; }
+        .source-list { margin: 0; padding: 0; list-style: none; }
+        .source-row { display: grid; grid-template-columns: 34px minmax(0, 1fr) 28px; gap: 12px; align-items: start; padding: 12px; border-top: 1px solid var(--line-soft); }
+        .source-row:first-child { border-top: 0; }
+        .source-row:target { background: var(--lime-wash); border-radius: var(--radius); }
+        .source-row:target .badge { box-shadow: 0 0 0 2px var(--ink); }
+        .sources-panel, .source-row { scroll-margin-top: 24px; }
+        .row-main { min-width: 0; }
+        .row-meta { display: flex; justify-content: space-between; gap: 8px; font-size: 11.5px; }
+        .row-publisher { min-width: 0; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .row-date { flex-shrink: 0; color: var(--muted); }
+        .row-title { display: -webkit-box; margin-top: 2px; font-size: 12px; line-height: 1.5; text-decoration: none; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow-wrap: break-word; }
+        a.row-title:hover { text-decoration: underline; }
+        .icon-link { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 4px; color: var(--ink); transition: background-color .15s ease-out; }
+        .icon-link:hover { background: var(--line-soft); }
+
+        .footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11.5px; }
+
+        @media (max-width: 1080px) {
+            .brief-grid { grid-template-columns: minmax(0, 1fr); }
+            .sources-panel { position: static; max-height: none; overflow: visible; }
+        }
+        @media (max-width: 760px) {
+            .masthead-inner { min-height: 52px; padding: 0 16px; }
+            .wordmark { font-size: 20px; }
+            .desk { padding: 20px 16px 40px; }
+            .title-block { padding: 28px 0 22px; margin-bottom: 20px; }
+            .panel-head { padding: 16px 16px 0; }
+            .panel-body { padding: 14px 16px 18px; }
+            .highlight { gap: 12px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { transition: none !important; }
         }
     </style>
 </head>
 <body>
-<div class="sheet">
-    <header class="masthead">
-        <span class="brand">Briefly.</span>
+<header class="masthead">
+    <div class="masthead-inner">
+        <span class="wordmark">briefly<span>.</span></span>
+    </div>
+</header>
 
-    </header>
-    <main>
-        <header class="hero">
-            <div class="eyebrow">News Brief</div>
-            <h1 th:text="${brief.title}">News Brief title</h1>
-            <p class="meta" th:if="${brief.generatedAt != null}">Generated
-                <time th:datetime="${brief.generatedAt}" th:text="${@briefTemplateSupport.timestamp(brief.generatedAt)}"></time>
-            </p>
-            <dl class="criteria" aria-label="Brief Criteria">
-                <div><dt>Query</dt><dd th:text="${brief.criteria.query}"></dd></div>
-                <div th:if="${brief.criteria.from != null}"><dt>Reporting Window · From</dt>
+<main class="desk">
+        <div class="desk-inner">
+            <dl class="query" aria-label="Brief Criteria">
+                <div class="query-main">
+                    <dt><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="visually-hidden">Query</span></dt>
+                    <dd class="query-text" th:text="${brief.criteria.query}">Query</dd>
+                </div>
+                <div class="window-item" th:if="${brief.criteria.from != null}"><dt>From</dt>
                     <dd><time th:datetime="${brief.criteria.from}" th:text="${@briefTemplateSupport.timestamp(brief.criteria.from)}"></time></dd></div>
-                <div th:if="${brief.criteria.to != null}"><dt>Reporting Window · To</dt>
+                <div class="window-item" th:if="${brief.criteria.to != null}"><dt>To</dt>
                     <dd><time th:datetime="${brief.criteria.to}" th:text="${@briefTemplateSupport.timestamp(brief.criteria.to)}"></time></dd></div>
             </dl>
-        </header>
-        <div class="reading">
-            <section aria-labelledby="overview-heading">
-                <h2 id="overview-heading">Overview</h2>
-                <p class="prose overview" th:text="${brief.overview}"></p>
-            </section>
-            <section class="highlights" aria-labelledby="highlights-heading">
-                <h2 id="highlights-heading">Highlights</h2>
-                <div class="highlight" th:each="highlight : ${brief.highlights}">
-                    <p class="prose" th:text="${highlight.text}"></p>
-                    <div class="citations"><span>Source Articles</span>
-                        <a th:each="citationId : ${highlight.citationIds}" th:href="${'#source-' + citationId}"
-                           th:text="${'[' + citationId + ']'}" th:aria-label="${'Source Article ' + citationId}"></a>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <section class="sources" aria-labelledby="sources-heading">
-            <div class="section-heading">
-                <h2 id="sources-heading">Source Articles</h2>
-                <p class="meta" th:text="${#lists.size(brief.sourceArticles) + ' articles behind this News Brief'}"></p>
-            </div>
-            <div class="source-grid">
-                <article class="source-card" th:each="source : ${brief.sourceArticles}"
-                         th:id="${'source-' + source.citationId}"
-                         th:with="articleHref=${@briefTemplateSupport.httpUri(source.article.url)}, publisherHref=${@briefTemplateSupport.httpUri(source.article.publisher.url)}, imageSrc=${@briefTemplateSupport.httpUri(source.article.metadata.imageUrl)}">
-                    <div class="image-region" aria-hidden="true">
-                        <div class="fallback"><span>B.</span></div>
-                        <img th:if="${imageSrc != null}" th:src="${imageSrc}" alt="" loading="lazy" referrerpolicy="no-referrer">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-meta">
-                            <span class="citation-number" th:text="${'[' + source.citationId + ']'}"></span>
-                            <span class="publisher" th:if="${!#strings.isEmpty(source.article.publisher.name)}">
-                                <a th:if="${publisherHref != null}" th:href="${publisherHref}" th:text="${source.article.publisher.name}" target="_blank" rel="noopener noreferrer"></a>
-                                <span th:unless="${publisherHref != null}" th:text="${source.article.publisher.name}"></span>
-                            </span>
+
+            <header class="title-block">
+                <h1 th:text="${brief.title}">News Brief title</h1>
+                <p class="generated" th:if="${brief.generatedAt != null}"><strong>Generated</strong>
+                    <time th:datetime="${brief.generatedAt}" th:text="${@briefTemplateSupport.timestamp(brief.generatedAt)}"></time></p>
+            </header>
+
+            <div class="brief-grid">
+                <div class="main-column">
+                    <section class="panel" aria-labelledby="overview-heading">
+                        <div class="panel-head">
+                            <h2 id="overview-heading">Overview</h2>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 10h16M4 14h16M4 18h10"/></svg>
                         </div>
-                        <h3>
-                            <a th:if="${articleHref != null}" th:href="${articleHref}" th:text="${source.article.title}" target="_blank" rel="noopener noreferrer"></a>
-                            <span th:unless="${articleHref != null}" th:text="${source.article.title}"></span>
-                        </h3>
-                        <p class="card-description" th:if="${!#strings.isEmpty(source.article.description)}" th:text="${source.article.description}"></p>
-                        <time class="card-date" th:if="${source.article.metadata.publishedAt != null}" th:datetime="${source.article.metadata.publishedAt}" th:text="${@briefTemplateSupport.timestamp(source.article.metadata.publishedAt)}"></time>
+                        <div class="panel-body">
+                            <div class="overview"><p th:each="paragraph : ${@briefTemplateSupport.paragraphs(brief.overview)}" th:text="${paragraph}"></p></div>
+                        </div>
+                    </section>
+
+                    <section class="panel" aria-labelledby="highlights-heading">
+                        <div class="panel-head">
+                            <h2 id="highlights-heading">Highlights</h2>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+                        </div>
+                        <div class="panel-body">
+                            <ol class="highlights">
+                                <li class="highlight" th:each="highlight, stat : ${brief.highlights}" th:id="${'highlight-' + stat.count}">
+                                    <span class="tile" th:text="${stat.count}" aria-hidden="true">1</span>
+                                    <div>
+                                        <div class="highlight-text"><p th:each="paragraph : ${@briefTemplateSupport.paragraphs(highlight.text)}" th:text="${paragraph}"></p></div>
+                                        <div class="cites">
+                                            <span class="cites-label">Sources</span>
+                                            <a class="cite" th:each="source : ${brief.sourceArticles}"
+                                               th:if="${#lists.contains(highlight.citationIds, source.citationId)}"
+                                               th:href="${'#source-' + source.citationId}"
+                                               th:with="publisherName=${#strings.isEmpty(source.article.publisher.name) ? 'Source Article' : source.article.publisher.name}"
+                                               th:aria-label="${'Source Article ' + source.citationId + ', ' + publisherName}">
+                                                <span class="badge small" th:classappend="${#strings.isEmpty(source.article.publisher.name) ? 'tone-none' : 'tone-' + ((source.citationId - 1) % 5)}"
+                                                      th:text="${#strings.isEmpty(source.article.publisher.name) ? source.citationId : #strings.toUpperCase(#strings.substring(#strings.trim(source.article.publisher.name), 0, 1))}" aria-hidden="true"></span>
+                                                <span class="cite-name" th:text="${publisherName}"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="panel sources-panel" id="sources" aria-labelledby="sources-list-heading">
+                    <div class="panel-head">
+                        <h2 id="sources-list-heading">Sources <span class="count" th:text="${'(' + #lists.size(brief.sourceArticles) + ')'}">(0)</span></h2>
                     </div>
-                </article>
+                    <div class="panel-body">
+                        <ul class="source-list">
+                            <li class="source-row" th:each="source : ${brief.sourceArticles}" th:id="${'source-' + source.citationId}"
+                                th:with="articleHref=${@briefTemplateSupport.httpUri(source.article.url)}, hasPublisher=${!#strings.isEmpty(source.article.publisher.name)}">
+                                <span class="badge" th:classappend="${hasPublisher ? 'tone-' + ((source.citationId - 1) % 5) : 'tone-none'}"
+                                      th:text="${hasPublisher ? #strings.toUpperCase(#strings.substring(#strings.trim(source.article.publisher.name), 0, 1)) : source.citationId}" aria-hidden="true"></span>
+                                <div class="row-main">
+                                    <div class="row-meta">
+                                        <span class="row-publisher" th:text="${hasPublisher ? source.article.publisher.name : 'Source Article ' + source.citationId}"></span>
+                                        <time class="row-date" th:if="${source.article.metadata.publishedAt != null}"
+                                              th:datetime="${source.article.metadata.publishedAt}"
+                                              th:text="${@briefTemplateSupport.date(source.article.metadata.publishedAt)}"></time>
+                                    </div>
+                                    <a class="row-title" th:if="${articleHref != null}" th:href="${articleHref}" target="_blank" rel="noopener noreferrer"><span th:text="${source.article.title}"></span><span class="visually-hidden"> (opens in a new tab)</span></a>
+                                    <span class="row-title" th:unless="${articleHref != null}" th:text="${source.article.title}"></span>
+                                </div>
+                                <a class="icon-link" th:if="${articleHref != null}" th:href="${articleHref}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
             </div>
-        </section>
-    </main>
-    <footer class="footer">Briefly · Citations identify the Source Articles used for each Highlight; they do not establish independent fact verification.</footer>
-</div>
+
+            <footer class="footer">briefly. · Citations identify the Source Articles used for each Highlight; they do not establish independent fact verification.</footer>
+        </div>
+</main>
 </body>
 </html>
