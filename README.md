@@ -175,11 +175,7 @@ curl -X POST http://localhost:8080/api/briefs/generate/html \
 
 Open `brief.html` in a browser. Errors from this endpoint are still JSON.
 
-![News Brief page showing the title, Brief Criteria, Overview, and a Highlight with its citations](docs/images/news-brief-page.png)
-
-The page ends with a card for each Source Article:
-
-![Source Article cards with Citation IDs, Publishers, titles, and descriptions](docs/images/news-brief-sources.png)
+![News Brief page showing the Query and Reporting Window, the title, the Overview, Highlights with their citations, and the Sources panel](docs/images/news-brief-page.png)
 
 ### Errors
 
