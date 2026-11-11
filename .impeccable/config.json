@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "src/main/resources/templates/brief.html"
+        ],
+        "createdAt": "2026-11-11T13:02:20.509Z",
+        "reason": "brief-pinned: the user's reference mockups for this page specify the warm grey-cream ground"
+      }
+    ]
+  }
+}

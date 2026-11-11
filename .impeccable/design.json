@@ -1,0 +1,386 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T13:10:42+00:00",
+  "title": "Design System: briefly.",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Desk Cream",
+        "canonical": "#ecebe4",
+        "oklch": "oklch(93.9% 0.009 100)",
+        "tonalRamp": [
+          "oklch(15% 0.002 100)",
+          "oklch(26% 0.002 100)",
+          "oklch(38% 0.002 100)",
+          "oklch(49% 0.002 100)",
+          "oklch(61% 0.004 100)",
+          "oklch(72% 0.006 100)",
+          "oklch(84% 0.008 100)",
+          "oklch(95% 0.009 100)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel Paper",
+        "canonical": "#f6f5f0",
+        "oklch": "oklch(97.0% 0.007 97)",
+        "tonalRamp": [
+          "oklch(15% 0.002 97)",
+          "oklch(26% 0.002 97)",
+          "oklch(38% 0.002 97)",
+          "oklch(49% 0.002 97)",
+          "oklch(61% 0.003 97)",
+          "oklch(72% 0.004 97)",
+          "oklch(84% 0.005 97)",
+          "oklch(95% 0.006 97)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Press Black",
+        "canonical": "#141414",
+        "oklch": "oklch(19.1% 0.000 90)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Pencil Grey",
+        "canonical": "#5c5a53",
+        "oklch": "oklch(46.7% 0.011 94)",
+        "tonalRamp": [
+          "oklch(15% 0.005 94)",
+          "oklch(26% 0.008 94)",
+          "oklch(38% 0.010 94)",
+          "oklch(49% 0.011 94)",
+          "oklch(61% 0.009 94)",
+          "oklch(72% 0.007 94)",
+          "oklch(84% 0.004 94)",
+          "oklch(95% 0.003 94)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#d3d0c6",
+        "oklch": "oklch(85.7% 0.014 93)",
+        "tonalRamp": [
+          "oklch(15% 0.004 93)",
+          "oklch(26% 0.004 93)",
+          "oklch(38% 0.004 93)",
+          "oklch(49% 0.006 93)",
+          "oklch(61% 0.008 93)",
+          "oklch(72% 0.011 93)",
+          "oklch(84% 0.014 93)",
+          "oklch(95% 0.012 93)"
+        ]
+      },
+      "line-soft": {
+        "role": "neutral",
+        "displayName": "Soft Hairline",
+        "canonical": "#e2dfd6",
+        "oklch": "oklch(90.4% 0.013 92)",
+        "tonalRamp": [
+          "oklch(15% 0.003 92)",
+          "oklch(26% 0.003 92)",
+          "oklch(38% 0.003 92)",
+          "oklch(49% 0.004 92)",
+          "oklch(61% 0.006 92)",
+          "oklch(72% 0.009 92)",
+          "oklch(84% 0.011 92)",
+          "oklch(95% 0.012 92)"
+        ]
+      },
+      "masthead": {
+        "role": "neutral",
+        "displayName": "Masthead Black",
+        "canonical": "#141414",
+        "oklch": "oklch(19.1% 0.000 90)",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "lime": {
+        "role": "primary",
+        "displayName": "Signal Lime",
+        "canonical": "#d4f25a",
+        "oklch": "oklch(91.1% 0.177 120)",
+        "tonalRamp": [
+          "oklch(15% 0.044 120)",
+          "oklch(26% 0.044 120)",
+          "oklch(38% 0.044 120)",
+          "oklch(49% 0.054 120)",
+          "oklch(61% 0.088 120)",
+          "oklch(72% 0.121 120)",
+          "oklch(84% 0.155 120)",
+          "oklch(95% 0.166 120)"
+        ]
+      },
+      "lime-wash": {
+        "role": "primary",
+        "displayName": "Lime Wash",
+        "canonical": "#eef8c6",
+        "oklch": "oklch(95.9% 0.066 117)",
+        "tonalRamp": [
+          "oklch(15% 0.016 117)",
+          "oklch(26% 0.016 117)",
+          "oklch(38% 0.016 117)",
+          "oklch(49% 0.016 117)",
+          "oklch(61% 0.027 117)",
+          "oklch(72% 0.040 117)",
+          "oklch(84% 0.052 117)",
+          "oklch(95% 0.065 117)"
+        ]
+      },
+      "tone-0": {
+        "role": "secondary",
+        "displayName": "Publisher Tone 0 (Lime)",
+        "canonical": "#d4f25a",
+        "oklch": "oklch(91.1% 0.177 120)",
+        "tonalRamp": [
+          "oklch(15% 0.044 120)",
+          "oklch(26% 0.044 120)",
+          "oklch(38% 0.044 120)",
+          "oklch(49% 0.054 120)",
+          "oklch(61% 0.088 120)",
+          "oklch(72% 0.121 120)",
+          "oklch(84% 0.155 120)",
+          "oklch(95% 0.166 120)"
+        ]
+      },
+      "tone-1": {
+        "role": "secondary",
+        "displayName": "Publisher Tone 1 (Apricot)",
+        "canonical": "#f6a05c",
+        "oklch": "oklch(77.9% 0.132 57)",
+        "tonalRamp": [
+          "oklch(15% 0.033 57)",
+          "oklch(26% 0.033 57)",
+          "oklch(38% 0.044 57)",
+          "oklch(49% 0.069 57)",
+          "oklch(61% 0.095 57)",
+          "oklch(72% 0.120 57)",
+          "oklch(84% 0.120 57)",
+          "oklch(95% 0.095 57)"
+        ]
+      },
+      "tone-2": {
+        "role": "secondary",
+        "displayName": "Publisher Tone 2 (Cornflower)",
+        "canonical": "#7ea9f2",
+        "oklch": "oklch(73.3% 0.116 261)",
+        "tonalRamp": [
+          "oklch(15% 0.029 261)",
+          "oklch(26% 0.029 261)",
+          "oklch(38% 0.048 261)",
+          "oklch(49% 0.070 261)",
+          "oklch(61% 0.092 261)",
+          "oklch(72% 0.114 261)",
+          "oklch(84% 0.097 261)",
+          "oklch(95% 0.074 261)"
+        ]
+      },
+      "tone-3": {
+        "role": "secondary",
+        "displayName": "Publisher Tone 3 (Blush)",
+        "canonical": "#f5b4c3",
+        "oklch": "oklch(83.4% 0.078 4)",
+        "tonalRamp": [
+          "oklch(15% 0.019 4)",
+          "oklch(26% 0.019 4)",
+          "oklch(38% 0.019 4)",
+          "oklch(49% 0.034 4)",
+          "oklch(61% 0.048 4)",
+          "oklch(72% 0.063 4)",
+          "oklch(84% 0.077 4)",
+          "oklch(95% 0.063 4)"
+        ]
+      },
+      "tone-4": {
+        "role": "secondary",
+        "displayName": "Publisher Tone 4 (Sky)",
+        "canonical": "#b6d4f7",
+        "oklch": "oklch(86.0% 0.059 252)",
+        "tonalRamp": [
+          "oklch(15% 0.015 252)",
+          "oklch(26% 0.015 252)",
+          "oklch(38% 0.015 252)",
+          "oklch(49% 0.023 252)",
+          "oklch(61% 0.034 252)",
+          "oklch(72% 0.045 252)",
+          "oklch(84% 0.056 252)",
+          "oklch(95% 0.050 252)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "\"briefly.\" in the masthead, its period in lime; 20px on mobile."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "News Brief title only, capped at 30ch."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Panel headings (Highlights, Overview, Sources)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Highlight text and the Overview, capped at 72ch, ligatures off."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Dates, counts, Citation chips, Reporting Window values, footer."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Numbers inside Highlight tiles."
+      }
+    },
+    "shadows": [
+      {
+        "name": "tile-ring",
+        "value": "0 0 0 2px #141414",
+        "purpose": "Number tile of a targeted Highlight, or badge of a targeted Sources row."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-fast",
+        "value": ".15s ease-out",
+        "purpose": "Colour, background and border changes on Citation chips and icon links."
+      },
+      {
+        "name": "scroll-smooth",
+        "value": "scroll-behavior: smooth",
+        "purpose": "In-page navigation; disabled along with all transitions under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "single-column",
+        "value": "1080px"
+      },
+      {
+        "name": "compact",
+        "value": "760px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": "masthead",
+      "description": "Full-width near-black bar holding only the wordmark; no links.",
+      "html": "<header class=\"ds-masthead\"><span class=\"ds-wordmark\">briefly<span>.</span></span></header>",
+      "css": ":host { --ground: #ecebe4; --panel: #f6f5f0; --ink: #141414; --muted: #5c5a53; --line: #d3d0c6; --line-soft: #e2dfd6; --masthead: #141414; --lime: #d4f25a; --lime-wash: #eef8c6; --tone-0: #d4f25a; --tone-1: #f6a05c; --tone-2: #7ea9f2; --tone-3: #f5b4c3; --tone-4: #b6d4f7; --radius: 6px; --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, Menlo, monospace; } .ds-masthead { display: flex; align-items: center; min-height: 60px; padding: 0 40px; background: var(--masthead); font-family: var(--mono); } .ds-wordmark { color: #f6f5f0; font-size: 22px; font-weight: 700; letter-spacing: -.03em; } .ds-wordmark span { color: var(--lime); }"
+    },
+    {
+      "name": "Query Bar",
+      "kind": "input",
+      "refersTo": "query-bar",
+      "description": "Read-only record of the Brief Criteria: the Query and the Reporting Window.",
+      "html": "<dl class=\"ds-query\"><div class=\"ds-query-main\"><dt><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-4-4\"/></svg></dt><dd>EU AI Act enforcement</dd></div><div class=\"ds-window\"><dt>From</dt><dd>Nov 1, 2026 09:00</dd></div><div class=\"ds-window\"><dt>To</dt><dd>Nov 10, 2026 18:00</dd></div></dl>",
+      "css": ":host { --ground: #ecebe4; --panel: #f6f5f0; --ink: #141414; --muted: #5c5a53; --line: #d3d0c6; --line-soft: #e2dfd6; --masthead: #141414; --lime: #d4f25a; --lime-wash: #eef8c6; --tone-0: #d4f25a; --tone-1: #f6a05c; --tone-2: #7ea9f2; --tone-3: #f5b4c3; --tone-4: #b6d4f7; --radius: 6px; --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, Menlo, monospace; } .ds-query { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; min-height: 52px; margin: 0; padding: 12px 18px; background: var(--panel); border: 1.5px solid var(--ink); border-radius: var(--radius); color: var(--ink); font-family: var(--mono); } .ds-query > div { display: flex; align-items: center; gap: 8px; } .ds-query dd { margin: 0; } .ds-query > .ds-query-main { flex: 1 1 320px; gap: 14px; } .ds-query-main dt { display: flex; } .ds-query-main dd { font-size: 15px; font-weight: 500; } .ds-window { font-size: 12px; color: var(--muted); } .ds-window dt { font-weight: 700; color: var(--ink); }"
+    },
+    {
+      "name": "Highlight Tile",
+      "kind": "custom",
+      "refersTo": "highlight-tile",
+      "description": "Lime square with a black numeral, reserved for Highlight numbers; shown at rest and as a targeted Highlight.",
+      "html": "<ol class=\"ds-highlights\"><li class=\"ds-highlight\"><span class=\"ds-tile\">1</span><p>The Commission opened its first formal proceedings under the AI Act.</p></li><li class=\"ds-highlight ds-target\"><span class=\"ds-tile\">2</span><p>Two national regulators published joint guidance on general-purpose models.</p></li></ol>",
+      "css": ":host { --ground: #ecebe4; --panel: #f6f5f0; --ink: #141414; --muted: #5c5a53; --line: #d3d0c6; --line-soft: #e2dfd6; --masthead: #141414; --lime: #d4f25a; --lime-wash: #eef8c6; --tone-0: #d4f25a; --tone-1: #f6a05c; --tone-2: #7ea9f2; --tone-3: #f5b4c3; --tone-4: #b6d4f7; --radius: 6px; --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, Menlo, monospace; } .ds-tile { display: grid; place-items: center; width: 28px; height: 28px; background: var(--lime); border-radius: 4px; color: var(--ink); font: 700 13px/1 var(--mono); } .ds-highlights { display: grid; margin: 0; padding: 0 12px; list-style: none; background: var(--panel); color: var(--ink); font: 400 14.5px/1.7 var(--mono); } .ds-highlight { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid var(--line-soft); } .ds-highlight:first-child { border-top: 0; } .ds-highlight p { margin: 0; max-width: 72ch; } .ds-target { margin: 0 -12px; padding: 14px 12px; background: var(--lime-wash); border-radius: var(--radius); } .ds-target .ds-tile { box-shadow: 0 0 0 2px var(--ink); }"
+    },
+    {
+      "name": "Publisher Badges",
+      "kind": "custom",
+      "refersTo": "publisher-badge",
+      "description": "Publisher-initial squares in five tones by (citationId - 1) % 5, in three sizes, plus the no-Publisher badge showing the Citation number.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-badge\">R</span><span class=\"ds-badge ds-tone-1\">B</span><span class=\"ds-badge ds-tone-2\">P</span><span class=\"ds-badge ds-tone-3\">G</span><span class=\"ds-badge ds-tone-4\">F</span><span class=\"ds-badge ds-tone-none\">6</span><span class=\"ds-badge small ds-tone-2\">P</span></div>",
+      "css": ":host { --ground: #ecebe4; --panel: #f6f5f0; --ink: #141414; --muted: #5c5a53; --line: #d3d0c6; --line-soft: #e2dfd6; --masthead: #141414; --lime: #d4f25a; --lime-wash: #eef8c6; --tone-0: #d4f25a; --tone-1: #f6a05c; --tone-2: #7ea9f2; --tone-3: #f5b4c3; --tone-4: #b6d4f7; --radius: 6px; --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, Menlo, monospace; } .ds-badge { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(20, 20, 20, .9); border-radius: 4px; background: var(--tone-0); color: var(--ink); font: 800 16px/1 var(--mono); } .ds-badge.small { width: 20px; height: 20px; border-radius: 3px; font-size: 11px; } .ds-tone-1 { background: var(--tone-1); } .ds-tone-2 { background: var(--tone-2); } .ds-tone-3 { background: var(--tone-3); } .ds-tone-4 { background: var(--tone-4); } .ds-tone-none { background: var(--panel); } .ds-row { display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--panel); }"
+    },
+    {
+      "name": "Citation Chip",
+      "kind": "chip",
+      "refersTo": "citation-chip",
+      "description": "Link from a Highlight to a Source Article: a small Publisher badge plus the Publisher name.",
+      "html": "<div class=\"ds-cites\"><span class=\"ds-cites-label\">Sources</span><a class=\"ds-cite\" href=\"#\"><span class=\"ds-badge small\">R</span>Reuters</a><a class=\"ds-cite\" href=\"#\"><span class=\"ds-badge small ds-tone-2\">P</span>Politico Europe</a></div>",
+      "css": ":host { --ground: #ecebe4; --panel: #f6f5f0; --ink: #141414; --muted: #5c5a53; --line: #d3d0c6; --line-soft: #e2dfd6; --masthead: #141414; --lime: #d4f25a; --lime-wash: #eef8c6; --tone-0: #d4f25a; --tone-1: #f6a05c; --tone-2: #7ea9f2; --tone-3: #f5b4c3; --tone-4: #b6d4f7; --radius: 6px; --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, Menlo, monospace; } .ds-badge { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(20, 20, 20, .9); border-radius: 4px; background: var(--tone-0); color: var(--ink); font: 800 16px/1 var(--mono); } .ds-badge.small { width: 20px; height: 20px; border-radius: 3px; font-size: 11px; } .ds-tone-1 { background: var(--tone-1); } .ds-tone-2 { background: var(--tone-2); } .ds-tone-3 { background: var(--tone-3); } .ds-tone-4 { background: var(--tone-4); } .ds-tone-none { background: var(--panel); } .ds-cites { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; background: var(--panel); color: var(--ink); font-family: var(--mono); } .ds-cites-label { color: var(--muted); font-size: 11px; } .ds-cite { display: inline-flex; align-items: center; gap: 7px; padding: 3px 9px 3px 3px; border: 1px solid var(--line); border-radius: 5px; background: #fbfaf7; color: inherit; font-size: 11.5px; font-weight: 500; text-decoration: none; transition: border-color .15s ease-out, background-color .15s ease-out; } .ds-cite:hover { border-color: var(--ink); background: #fff; } .ds-cite:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Flat cream panel with a hairline border; head row with a Title heading and a stroke icon.",
+      "html": "<section class=\"ds-panel\"><div class=\"ds-panel-head\"><h2>Overview</h2><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 6h16M4 10h16M4 14h16M4 18h10\"/></svg></div><div class=\"ds-panel-body\"><p>Enforcement of the AI Act moved from preparation to action this week.</p></div></section>",
+      "css": ":host { --ground: #ecebe4; --panel: #f6f5f0; --ink: #141414; --muted: #5c5a53; --line: #d3d0c6; --line-soft: #e2dfd6; --masthead: #141414; --lime: #d4f25a; --lime-wash: #eef8c6; --tone-0: #d4f25a; --tone-1: #f6a05c; --tone-2: #7ea9f2; --tone-3: #f5b4c3; --tone-4: #b6d4f7; --radius: 6px; --mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', 'SF Mono', Consolas, Menlo, monospace; } .ds-panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink); font: 400 14.5px/1.7 var(--mono); } .ds-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px 0; } .ds-panel-head h2 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.02em; } .ds-panel-body { padding: 16px 22px 22px; } .ds-panel-body p { margin: 0; max-width: 72ch; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Reading Desk",
+    "overview": "Briefly is a working desk, not a magazine. A near-black masthead carries only the wordmark; below it lies a warm grey-cream desk with paler cream panels laid on it, each edged by a hairline warm-grey border and small radius. Everything is set in one monospace face, so hierarchy comes from weight and size alone, and the page reads like a well-kept research log: dense, orderly, scannable.\n\nOne colour does the pointing. Lime fills the numbered tiles beside each Highlight, dots the wordmark, and lights whatever the reader has just jumped to. Publishers are identified by coloured initial badges in five fixed tones, so the same Source Article wears the same colour in the Citation chips and the Sources list. The world was pinned by the user from reference mockups; it refuses the soft editorial article with image cards, and Source Article images are replaced by publisher badges.\n\nDepth is almost absent. Panels sit flat on the desk; the only lift in the system is the ring and soft shadow that appear on a linked target, so the eye lands where the link went.",
+    "keyCharacteristics": [
+      "Dark masthead over a cream desk; no navigation, because the page is one document.",
+      "JetBrains Mono for every role, ligatures off, bold to extra-bold for headings with tight negative tracking.",
+      "Lime as the single accent, carried mostly by filled tiles behind black numerals.",
+      "Five-tone publisher-initial badges keyed to the Citation number.",
+      "Flat panels with 1px warm-grey borders and 4-6px corners; depth only on target state."
+    ],
+    "rules": [
+      {
+        "name": "The Numbered Lime Rule",
+        "body": "A filled lime tile with a black numeral means a Highlight number and nothing else. Lime may also mark the wordmark period, selection, and target rings, but never another numbered or counted thing.",
+        "section": "colors"
+      },
+      {
+        "name": "The Publisher Tone Rule",
+        "body": "A Publisher badge takes tone `(citationId - 1) % 5`, so one Source Article keeps one colour everywhere on the page. A Source Article with no Publisher gets the neutral panel-paper badge showing its Citation number instead of an initial. The tone-0 badge shares the lime hue but always carries a letter and an ink border, which keeps it apart from a Highlight tile.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Face Rule",
+        "body": "JetBrains Mono is the only typeface, with ligatures turned off. New roles are made from weight, size, and tracking, never a second family.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Desk Rule",
+        "body": "Nothing is lifted at rest. A shadow means \"you arrived here\" and appears only on `:target`.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do reserve the filled lime tile with a black numeral for Highlight numbers.",
+      "Do colour Publisher badges by `(citationId - 1) % 5`, and give a Source Article without a Publisher the neutral panel-paper badge showing its Citation number.",
+      "Do set every role in JetBrains Mono with ligatures off, building hierarchy from weight (400-800), size, and negative tracking on headings.",
+      "Do keep panels flat on the desk cream with a 1px hairline (#d3d0c6) and 6px corners.",
+      "Do mark linked targets with lime: a lime-wash fill for a targeted Highlight or Sources row.",
+      "Do keep transitions to colour, border, and shadow at 0.15s ease-out, and drop them under reduced motion."
+    ],
+    "donts": [
+      "Don't use image cards or Source Article photos; Publisher initial badges stand in for them.",
+      "Don't introduce a second typeface for display or body.",
+      "Don't put a lime tile behind counts, dates, or any number that is not a Highlight number.",
+      "Don't add shadows to panels at rest.",
+      "Don't add navigation to the page; it is one standalone document, and Briefly has no other screens."
+    ]
+  }
+}
